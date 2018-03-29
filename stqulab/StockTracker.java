@@ -10,10 +10,10 @@ import java.util.Queue;
  * buys and sells several lots. This accounts for capital
  * gains using the FIFO method.
  * 
- * @author 
- * CSCI 245, Wheaton College, Fall 2015
- * Aug 3, 2015
- * Lab 9
+ * @author Joel Armstrong and Mitchell Smith
+ * CSCI 245, Wheaton College, Spring 2018
+ * March 29, 2018
+ * Lab 8
  */
 public class StockTracker {
 
@@ -30,14 +30,12 @@ public class StockTracker {
      * @param trans The transaction to process
      */
     public void processTransaction(Transaction trans) {
-    	purchases.add(trans);
-    		/*
-    	else {
-    		sells.add(trans);
-    		purchases.remove(trans);
+    	if (trans) { // a buy
+		purchases.add(trans);
+		return;
+	}
+    	sells.add(trans);
     	}
-    	*/
-    }
 
     /**
      * Get the number of shares currently held (all lots)
@@ -47,10 +45,8 @@ public class StockTracker {
     	Queue<Transaction> buys = purchases;
     	Queue<Transaction> loss = sells;
         int totalShares = 0;
-        while ((buys.size()+loss.size())>0) {
-        	totalShares += buys.remove().shares;
-        	totalShares -= loss.remove().shares;
-        }
+        while (!buys.isEmpty()) totalShares += buys.remove().shares;
+        while (!sells.isEmpty()) totalShares -= sells.remove().shares;
         return totalShares;
     }
 
