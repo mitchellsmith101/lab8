@@ -10,7 +10,7 @@ import java.util.Queue;
  * buys and sells several lots. This accounts for capital
  * gains using the FIFO method.
  * 
- * @author Joel Armstrong and Mitchell Smith
+ * @author: Joel Armstrong and Mitchell Smith
  * CSCI 245, Wheaton College, Spring 2018
  * March 29, 2018
  * Lab 8
